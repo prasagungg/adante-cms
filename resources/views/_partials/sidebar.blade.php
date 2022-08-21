@@ -23,14 +23,14 @@
         <ul class="navbar-nav">
         
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('home') }}">
+            <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">
               <i class="ni ni-shop text-primary"></i>
               <span class="nav-link-text">Dashboard</span>
             </a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('home') }}">
+            <a class="nav-link {{ request()->is('project*') ? 'active' : '' }}" href="{{ route('project.index') }}">
               <i class="ni ni-spaceship text-orange"></i>
               <span class="nav-link-text">Project</span>
             </a>
