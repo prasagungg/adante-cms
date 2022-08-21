@@ -11,6 +11,11 @@ class AuthService {
 		return Auth::attempt($credentials, $remember);
 	}
 
+	public function logout()
+	{
+		return Auth::logout();
+	}
+
 }
 
 ?>

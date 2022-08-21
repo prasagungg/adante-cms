@@ -31,4 +31,10 @@ class AuthController extends Controller
             return back()->with('error', 'Your login credentials don’t match an account in our system.');
         }
     }
+
+    public function logout(){
+        $this->authService->logout();
+
+        return redirect('/');
+    }
 }

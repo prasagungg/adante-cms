@@ -1,7 +1,7 @@
 @extends('_layouts.auth')
 
 @section('content')
-<form action="{{ route('login.post') }}" method="POST">
+<form action="{{ route('login') }}" method="POST">
     @csrf
     <div class="form-group mb-3">
         <div class="input-group input-group-merge input-group-alternative">
