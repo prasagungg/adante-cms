@@ -18,8 +18,8 @@
         <!-- Page content -->
         <div class="container-fluid mt--6">
             @yield('content')
-            <!-- Footer -->
-            @include('_partials.footer')
+            {{-- <!-- Footer -->
+            @include('_partials.footer') --}}
         </div>
     </div>
 
