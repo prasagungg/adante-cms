@@ -12,3 +12,5 @@
   <script src="{{ asset('assets/js/argon.js?v=1.2.1') }}"></script>
   <!-- Demo JS - remove this in your project -->
   <script src="{{ asset('assets/js/demo.min.js') }}"></script>
+
+  @stack('js')

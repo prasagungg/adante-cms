@@ -10,5 +10,10 @@ class Project extends Model
 {
     use HasFactory, AddModel;
 
-    protected $fillable = ['email', 'password', 'description', 'created_by', 'updatedBy'];
+    protected $fillable = ['email', 'password', 'description', 'created_by', 'updated_by'];
+
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id');
+    }
 }

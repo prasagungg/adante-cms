@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\ProjectService;
 use Illuminate\Http\Request;
 
 class ProjectContoller extends Controller
@@ -80,5 +81,10 @@ class ProjectContoller extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function datatables(ProjectService $service)
+    {
+        return $service->getDatatables();
     }
 }

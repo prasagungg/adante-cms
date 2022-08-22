@@ -27,4 +27,5 @@ Route::middleware('auth')->group(function (){
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::resource('project', ProjectContoller::class);
+    Route::post('/project/datatables', [ProjectContoller::class, 'datatables'])->name('project.datatables');
 });

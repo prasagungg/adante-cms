@@ -7,6 +7,10 @@
 <li class="breadcrumb-item active "><a href="{{ route('project.index') }}">Project</a></li>
 @endsection
 
+@section('button')
+    <a href="{{ route('project.create') }}" class="btn btn-sm btn-neutral">Create Project</a>
+@endsection
+
 @section('content')
 <div class="row">
     <div class="col">
@@ -20,12 +24,12 @@
                 <table class="table align-items-center table-flush">
                     <thead class="thead-light">
                         <tr>
-                            <th>Project</th>
-                            <th>Budget</th>
-                            <th>Status</th>
-                            <th>Users</th>
-                            <th>Completion</th>
-                            <th></th>
+                            <th>No</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>Creator</th>
+                            <th>Created At</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                 </table>
@@ -34,3 +38,92 @@
     </div>
 </div>
 @endsection
+
+@push('css')
+<link rel="stylesheet" href="{{ asset('assets/vendor/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
+{{-- <link rel="stylesheet" href="{{ asset('assets/vendor/datatables/dataTables.bootstrap4.min.css') }}"> --}}
+@endpush
+
+@push('js')
+<script src="{{ asset('assets/vendor/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+{{-- <script src="{{ asset('assets/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script> --}}
+<script>
+    const ajaxUrl = '{{ route('project.datatables') }}'
+    const deleteUrl = '{{ route('project.destroy', ':id') }}'
+    const csrf = '{{ csrf_token() }}'
+
+</script>
+<script>
+    $(function () {
+
+        const table = $('table').DataTable({
+            serverSide: true,
+            processing: true,
+            ajax: {
+                url: ajaxUrl,
+                type: 'post',
+                data: {
+                    _token: csrf
+                }
+            },
+            columns: [{
+                    data: 'DT_RowIndex'
+                },
+                {
+                    data: 'email'
+                },
+                {
+                    data: 'password',
+
+                },
+                {
+                    data: 'created_by',
+                },
+                {
+                    data: 'created_at',
+                },
+                {
+                    data: 'action',
+                    orderable: false,
+                    searchable: false,
+                },
+            ]
+        })
+
+        // const remove = id => {
+        //     const url = deleteUrl.replace(':id', id)
+
+        //     $.ajax({
+        //         url: url,
+        //         type: 'post',
+        //         data: {
+        //             _token: csrf,
+        //             _method: 'DELETE'
+        //         },
+        //         success: res => {
+        //             $('#alert').html(`
+		// 			<div class="alert alert-success alert-dismissible">
+		// 			  <span>${res}</span>
+		// 			  <button class="close" data-dismiss="alert">&times;</button>
+		// 			</div>
+		// 		`)
+
+        //             table.ajax.reload()
+        //         }
+        //     })
+        // }
+
+        // $('tbody').on('click', '.delete', function () {
+        //     if (confirm('Yakin hapus buku ini ?')) {
+        //         const id = table.row($(this).parents('tr')).data().id
+
+        //         remove(id)
+        //     }
+        // })
+
+    })
+
+</script>
+@endpush
