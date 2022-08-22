@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use App\Services\ProjectService;
+use Exception;
 use Illuminate\Http\Request;
 
 class ProjectContoller extends Controller
@@ -24,7 +26,7 @@ class ProjectContoller extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.project.create');
     }
 
     /**
@@ -35,7 +37,12 @@ class ProjectContoller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            Project::create($request->projects);
+            return redirect()->route('project.index')->with('success', 'Success added project');
+        } catch (Exception $e){
+            return redirect()->route('project.index')->with('error', $e->getMessage());
+        }
     }
 
     /**

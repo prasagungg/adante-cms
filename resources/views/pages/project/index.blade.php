@@ -15,10 +15,13 @@
 <div class="row">
     <div class="col">
         <div class="card">
+            @include('_partials.alert')
             <!-- Card header -->
             <div class="card-header border-0">
                 <h3 class="mb-0">List Projects</h3>
             </div>
+
+
             <!-- Light table -->
             <div class="table-responsive">
                 <table class="table align-items-center table-flush">
