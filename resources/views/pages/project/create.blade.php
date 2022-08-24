@@ -12,6 +12,15 @@
 <div class="row">
     <div class="col-lg-12">
       <div class="card">
+        @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show my-2 mx-2" role="alert">
+            <ul class="p-2">
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
         <!-- Card header -->
         <div class="card-header">
           <h3 class="mb-0">Create Projects</h3>
@@ -30,9 +39,9 @@
              </thead>
              <tbody>
                <tr>
-                 <td><input type="email" class="form-control" name="projects[0][email]" placeholder="name@example.com"></td>
-                 <td><input type="text" class="form-control" name="projects[0][password]" placeholder="password"></td>
-                 <td><textarea name="projects[0][description]" class="form-control" rows="2"></textarea></td>
+                 <td><input type="email" class="form-control" name="projects[0][email]" placeholder="name@example.com" required></td>
+                 <td><input type="text" class="form-control" name="projects[0][password]" placeholder="password" required></td>
+                 <td><textarea name="projects[0][description]" class="form-control" rows="2" required></textarea></td>
                  <td class="table-actions">
                   <a href="#!" id="add-row" class="table-action" data-toggle="tooltip" data-original-title="Add Project">
                     <i class="fas fa-plus"></i> 
@@ -44,6 +53,7 @@
          </div>
 
         <div class="card-footer py-4 d-flex justify-content-end">
+          <a href="{{ route('project.index') }}" class="btn btn-lg btn-neutral">Back</a>
           <button type="submit" class="btn btn-lg btn-neutral">Save</button>
         </div>
 
@@ -62,9 +72,9 @@
         $("#table").append(
           `
           <tr>
-            <td><input type="email" class="form-control" name="projects[${i}][email]" placeholder="name@example.com"></td>
-            <td><input type="text" class="form-control" name="projects[${i}][password]" placeholder="password"></td>
-            <td><textarea name="projects[${i}][description]" class="form-control" rows="2"></textarea></td>
+            <td><input type="email" class="form-control" name="projects[${i}][email]" placeholder="name@example.com" required></td>
+            <td><input type="text" class="form-control" name="projects[${i}][password]" placeholder="password" required></td>
+            <td><textarea name="projects[${i}][description]" class="form-control" rows="2" required></textarea></td>
             <td class="table-actions">
               <a href="#!" class="table-action table-action-delete remove-input-field" data-toggle="tooltip" data-original-title="Delete Project">
                 <i class="fas fa-trash"></i>

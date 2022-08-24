@@ -46,6 +46,8 @@
         </div>
     </div>
 
+    @yield('modal')
+
     @include('_includes.foot')
 </body>
 

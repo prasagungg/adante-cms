@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Project;
+use Carbon\Carbon;
 use Yajra\DataTables\Facades\DataTables;
 
 class ProjectService {
@@ -13,6 +14,9 @@ class ProjectService {
         ->addColumn('created_by', function ($project){
           return $project->creator->name;
         })
+        ->addColumn('created_at', function ($project){
+          return Carbon::parse($project->created_at)->format('d-m-Y');
+        })
         ->addColumn('action', function ($project) {
           return '
           <div class="dropdown">
@@ -22,6 +26,7 @@ class ProjectService {
               </a>
               <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                   <a class="dropdown-item" href="'.route('project.edit', $project->id).'">Edit</a>
+                  <a class="dropdown-item" href="'.route('project.show', $project->id).'">Show</a>
                   <a class="dropdown-item delete" href="#">Delete</a>
               </div>
           </div>
