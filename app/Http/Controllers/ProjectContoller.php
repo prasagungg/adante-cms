@@ -150,4 +150,27 @@ class ProjectContoller extends Controller
     {
         return $service->getDatatables();
     }
+
+    public function select(Request $request)
+    {
+        $keyword = $request->search;
+
+        $projects = Project::select('id', 'email')
+            ->where('type', null)
+            ->where('email', 'like', "%{$keyword}%")
+            ->orderBy('email')
+            ->get()->take(10);
+
+        $result = [];
+
+        foreach ($projects as $proejct) {
+            $result[] = [
+                "id" => $proejct->id,
+                "text" => $proejct->email,
+            ];
+        }
+
+        return $result;
+        
+    }
 }

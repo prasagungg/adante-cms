@@ -36,6 +36,13 @@
             </a>
           </li>
 
+          <li class="nav-item">
+            <a class="nav-link {{ request()->is('netflix*') ? 'active' : '' }}" href="{{ route('netflix.index') }}">
+              <i class="ni ni-single-copy-04 text-pink"></i>
+              <span class="nav-link-text">Netflix</span>
+            </a>
+          </li>
+
 
           {{-- <li class="nav-item">
             <a class="nav-link" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-examples">
@@ -106,28 +113,6 @@
                   <a href="../../pages/components/cards.html" class="nav-link">
                     <span class="sidenav-mini-icon"> C </span>
                     <span class="sidenav-normal"> Cards </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#navbar-forms" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-forms">
-              <i class="ni ni-single-copy-04 text-pink"></i>
-              <span class="nav-link-text">Netflix</span>
-            </a>
-            <div class="collapse" id="navbar-forms">
-              <ul class="nav nav-sm flex-column">
-                <li class="nav-item">
-                  <a href="../../pages/forms/elements.html" class="nav-link">
-                    <span class="sidenav-mini-icon"> E </span>
-                    <span class="sidenav-normal"> Elements </span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../pages/forms/components.html" class="nav-link">
-                    <span class="sidenav-mini-icon"> C </span>
-                    <span class="sidenav-normal"> Components </span>
                   </a>
                 </li>
               </ul>

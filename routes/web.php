@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\NetflixController;
 use App\Http\Controllers\ProjectContoller;
 use Illuminate\Support\Facades\Route;
 
@@ -28,4 +29,8 @@ Route::middleware('auth')->group(function (){
 
     Route::resource('project', ProjectContoller::class);
     Route::post('/project/datatables', [ProjectContoller::class, 'datatables'])->name('project.datatables');
+    Route::post('/project/select', [ProjectContoller::class, 'select'])->name('project.select');
+
+    Route::resource('netflix', NetflixController::class);
+    Route::post('/netflix/datatables', [NetflixController::class, 'datatables'])->name('netflix.datatables');
 });
