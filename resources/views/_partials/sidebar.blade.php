@@ -43,127 +43,76 @@
             </a>
           </li>
 
-
-          {{-- <li class="nav-item">
-            <a class="nav-link" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-examples">
-              <i class="ni ni-ungroup text-orange"></i>
-              <span class="nav-link-text">Examples</span>
-            </a>
-            <div class="collapse" id="navbar-examples">
-              <ul class="nav nav-sm flex-column">
-                <li class="nav-item">
-                  <a href="../../pages/examples/pricing.html" class="nav-link">
-                    <span class="sidenav-mini-icon"> P </span>
-                    <span class="sidenav-normal"> Pricing </span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../pages/examples/login.html" class="nav-link">
-                    <span class="sidenav-mini-icon"> L </span>
-                    <span class="sidenav-normal"> Login </span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../pages/examples/register.html" class="nav-link">
-                    <span class="sidenav-mini-icon"> R </span>
-                    <span class="sidenav-normal"> Register </span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../pages/examples/lock.html" class="nav-link">
-                    <span class="sidenav-mini-icon"> L </span>
-                    <span class="sidenav-normal"> Lock </span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../pages/examples/timeline.html" class="nav-link">
-                    <span class="sidenav-mini-icon"> T </span>
-                    <span class="sidenav-normal"> Timeline </span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../pages/examples/profile.html" class="nav-link">
-                    <span class="sidenav-mini-icon"> P </span>
-                    <span class="sidenav-normal"> Profile </span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../pages/examples/rtl-support.html" class="nav-link">
-                    <span class="sidenav-mini-icon"> RP </span>
-                    <span class="sidenav-normal"> RTL Support </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </li> --}}
           <li class="nav-item">
-            <a class="nav-link" href="#navbar-components" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
+            <a class="nav-link {{ request()->is('zoom*') ? 'active' : '' }}" href="{{ route('netflix.index') }}">
               <i class="ni ni-planet text-info"></i>
               <span class="nav-link-text">Zoom</span>
             </a>
-            <div class="collapse" id="navbar-components">
-              <ul class="nav nav-sm flex-column">
-                <li class="nav-item">
-                  <a href="../../pages/components/buttons.html" class="nav-link">
-                    <span class="sidenav-mini-icon"> B </span>
-                    <span class="sidenav-normal"> Buttons </span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../pages/components/cards.html" class="nav-link">
-                    <span class="sidenav-mini-icon"> C </span>
-                    <span class="sidenav-normal"> Cards </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
           </li>
+        </ul>
+
+        <hr class="my-3">
+
+        <h6 class="navbar-heading p-0 text-muted">
+          <span class="docs-normal">Transaction</span>
+          <span class="docs-mini">T</span>
+        </h6>
+
+        <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#navbar-tables" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-tables">
-              <i class="ni ni-money-coins text-default"></i>
-              <span class="nav-link-text">Keuangan</span>
+            <a class="nav-link {{ request()->is('zoom*') ? 'active' : '' }}" href="{{ route('netflix.index') }}">
+              <i class="ni ni-basket text-green"></i>
+              <span class="nav-link-text">Penjualan</span>
             </a>
-            <div class="collapse" id="navbar-tables">
-              <ul class="nav nav-sm flex-column">
-                <li class="nav-item">
-                  <a href="../../pages/tables/tables.html" class="nav-link">
-                    <span class="sidenav-mini-icon"> P </span>
-                    <span class="sidenav-normal"> Pendapatan </span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../pages/tables/sortable.html" class="nav-link">
-                    <span class="sidenav-mini-icon"> P </span>
-                    <span class="sidenav-normal"> Pemasukan </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#navbar-maps" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-maps">
-              <i class="ni ni-single-02 text-primary"></i>
+            <a class="nav-link {{ request()->is('zoom*') ? 'active' : '' }}" href="{{ route('netflix.index') }}">
+              <i class="ni ni-basket text-green"></i>
+              <span class="nav-link-text">Pembelian</span>
+            </a>
+          </li>
+        </ul>
+
+        <hr class="my-3">
+
+        <h6 class="navbar-heading p-0 text-muted">
+          <span class="docs-normal">User Management</span>
+          <span class="docs-mini">U</span>
+        </h6>
+
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link {{ request()->is('zoom*') ? 'active' : '' }}" href="{{ route('netflix.index') }}">
+              <i class="ni ni-single-02 text-red"></i>
               <span class="nav-link-text">Users</span>
             </a>
-            <div class="collapse" id="navbar-maps">
-              <ul class="nav nav-sm flex-column">
-                <li class="nav-item">
-                  <a href="../../pages/maps/google.html" class="nav-link">
-                    <span class="sidenav-mini-icon"> G </span>
-                    <span class="sidenav-normal"> Google </span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../pages/maps/vector.html" class="nav-link">
-                    <span class="sidenav-mini-icon"> V </span>
-                    <span class="sidenav-normal"> Vector </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
           </li>
-        
         </ul>
+
+        <hr class="my-3">
+
+        <h6 class="navbar-heading p-0 text-muted">
+          <span class="docs-normal">Report</span>
+          <span class="docs-mini">U</span>
+        </h6>
+
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link {{ request()->is('zoom*') ? 'active' : '' }}" href="{{ route('netflix.index') }}">
+              <i class="ni ni-single-02 text-red"></i>
+              <span class="nav-link-text">Laporan Penjualan</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link {{ request()->is('zoom*') ? 'active' : '' }}" href="{{ route('netflix.index') }}">
+              <i class="ni ni-single-02 text-red"></i>
+              <span class="nav-link-text">Laporan Pembelian</span>
+            </a>
+          </li>
+
+        </ul>
+
       </div>
     </div>
   </div>
