@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function (){
     Route::resource('project', ProjectContoller::class);
     Route::post('/project/datatables', [ProjectContoller::class, 'datatables'])->name('project.datatables');
     Route::post('/project/select', [ProjectContoller::class, 'select'])->name('project.select');
+    Route::get('/project/selected/{project}', [ProjectContoller::class, 'selected'])->name('project.selected');
 
     Route::resource('netflix', NetflixController::class);
     Route::post('/netflix/datatables', [NetflixController::class, 'datatables'])->name('netflix.datatables');

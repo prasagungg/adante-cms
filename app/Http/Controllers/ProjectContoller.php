@@ -163,14 +163,22 @@ class ProjectContoller extends Controller
 
         $result = [];
 
-        foreach ($projects as $proejct) {
+        foreach ($projects as $project) {
             $result[] = [
-                "id" => $proejct->id,
-                "text" => $proejct->email,
+                "id" => $project->id,
+                "text" => $project->email,
             ];
         }
 
         return $result;
         
+    }
+
+    public function selected(Project $project)
+    {
+        return response()->json([
+            "id" => $project->id,
+            "text" => $project->email,
+        ]);
     }
 }

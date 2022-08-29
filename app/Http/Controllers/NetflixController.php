@@ -72,7 +72,9 @@ class NetflixController extends Controller
      */
     public function show($id)
     {
-        //
+        $netflix = Netflix::with('editor:id,name', 'creator:id,name', 'project:id,email,password')->findOrFail($id);
+
+        return view('pages.netflix.show', compact('netflix'));
     }
 
     /**
@@ -83,7 +85,9 @@ class NetflixController extends Controller
      */
     public function edit($id)
     {
-        //
+        $netflix = Netflix::findOrFail($id);
+
+        return view('pages.netflix.edit', compact('netflix'));
     }
 
     /**
@@ -95,7 +99,22 @@ class NetflixController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'project_id' => 'required|exists:projects,id',
+            'password' => 'required',
+            'price' => 'required'
+        ]);
+        
+        try {
+            $netflix = Netflix::findOrFail($id);
+
+            $netflix->update($request->all());
+
+            return redirect()->route('netflix.index')->with('success', 'Success update');
+
+        } catch (Exception $e){
+            return redirect()->route('netflix.index')->with('error', $e->getMessage());
+        }
     }
 
     /**
@@ -106,7 +125,19 @@ class NetflixController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $netflix = Netflix::findOrFail($id);
+            $netflix->delete();
+            
+            return response()->json([
+                'message' => 'Success Delete',
+            ]);
+
+        } catch(Exception $e){
+            return response()->json([
+                'message' => 'upps something when wrong'
+            ]);
+        }
     }
 
     public function datatables(NetflixService $service)

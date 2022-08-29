@@ -11,7 +11,7 @@ class Project extends Model
 {
     use HasFactory, AddModel;
 
-    protected $fillable = ['email', 'password', 'description', 'created_by', 'updated_by'];
+    protected $fillable = ['email', 'password', 'description', 'created_by', 'updated_by', 'type'];
 
 
     public function creator()
