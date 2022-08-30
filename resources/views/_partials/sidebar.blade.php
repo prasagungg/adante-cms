@@ -44,10 +44,26 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('zoom*') ? 'active' : '' }}" href="{{ route('netflix.index') }}">
+            <a class="nav-link {{ request()->is('zooms*') ? 'active' : '' }}" href="#navbar-tables" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-tables">
               <i class="ni ni-planet text-info"></i>
               <span class="nav-link-text">Zoom</span>
             </a>
+            <div class="collapse show" id="navbar-tables">
+              <ul class="nav nav-sm flex-column">
+                <li class="nav-item">
+                  <a href="{{ route('type.index') }}" class="nav-link {{ request()->is('zooms/type*') ? 'active' : '' }}">
+                    <span class="sidenav-mini-icon"> T </span>
+                    <span class="sidenav-normal"> Type Zoom </span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="../../pages/tables/sortable.html" class="nav-link">
+                    <span class="sidenav-mini-icon"> S </span>
+                    <span class="sidenav-normal"> Account Zoom </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </li>
         </ul>
 

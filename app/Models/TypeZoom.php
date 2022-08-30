@@ -22,4 +22,9 @@ class TypeZoom extends Model
         return $this->belongsTo(User::class, 'updated_by', 'id');
     }
 
+    public function zooms()
+    {
+        return $this->hasMany(Zoom::class, 'zoom_type_id', 'id');
+    }
+
 }
