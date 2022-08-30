@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NetflixController;
 use App\Http\Controllers\ProjectContoller;
+use App\Http\Controllers\ZoomController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,4 +35,9 @@ Route::middleware('auth')->group(function (){
 
     Route::resource('netflix', NetflixController::class);
     Route::post('/netflix/datatables', [NetflixController::class, 'datatables'])->name('netflix.datatables');
+    
+    Route::prefix('zooms')->group(function(){
+        Route::resource('zoom', ZoomController::class);
+    });
+
 });

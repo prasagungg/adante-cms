@@ -6,12 +6,11 @@ use App\Trait\AddModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model
+class TypeZoom extends Model
 {
     use HasFactory, AddModel;
 
-    protected $fillable = ['email', 'password', 'description', 'created_by', 'updated_by', 'type'];
-
+    protected $guarded = ['id'];
 
     public function creator()
     {
@@ -22,6 +21,5 @@ class Project extends Model
     {
         return $this->belongsTo(User::class, 'updated_by', 'id');
     }
-
 
 }
