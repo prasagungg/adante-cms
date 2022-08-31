@@ -69,7 +69,9 @@ class TypeZoomController extends Controller
      */
     public function show($id)
     {
-        //
+        $type = TypeZoom::with('creator:id,name', 'editor:id,name')->findOrFail($id);
+
+        return view('pages.zooms.type.show', compact('type'));
     }
 
     /**
@@ -80,7 +82,9 @@ class TypeZoomController extends Controller
      */
     public function edit($id)
     {
-        //
+        $type = TypeZoom::findOrFail($id);
+
+        return view('pages.zooms.type.edit', compact('type'));
     }
 
     /**
@@ -92,7 +96,21 @@ class TypeZoomController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'participants' => 'required',
+            'host' => 'required',
+            'price' => 'required'
+        ]);
+
+        try {
+           $type = TypeZoom::findOrFail($id);
+           $type->update($request->all());
+           return redirect()->route('type.index')->with('success', 'Success updated type');
+        } catch(Exception $e){
+            return redirect()->route('type.index')->with('error', $e->getMessage());
+        }
+
     }
 
     /**
@@ -103,7 +121,19 @@ class TypeZoomController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $project = TypeZoom::findOrFail($id);
+            $project->delete();
+            
+            return response()->json([
+                'message' => 'Success Delete',
+            ]);
+
+        } catch(Exception $e){
+            return response()->json([
+                'message' => 'upps something when wrong'
+            ]);
+        }
     }
 
     public function datatables(TypeZoomService $service)

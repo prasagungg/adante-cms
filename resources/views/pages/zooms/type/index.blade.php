@@ -119,7 +119,7 @@
 
 
         $('tbody').on('click', '.delete', function () {
-            if (confirm('Are you sure delete this netflix ?')) {
+            if (confirm('Are you sure delete this type ?')) {
                 const id = table.row($(this).parents('tr')).data().id
 
                 remove(id)
