@@ -163,11 +163,11 @@ class TypeZoomController extends Controller
         
     }
 
-    public function selected(TypeZoom $project)
+    public function selected(TypeZoom $type)
     {
         return response()->json([
-            "id" => $project->id,
-            "text" => $project->name,
+            "id" => $type->id,
+            "text" => $type->name,
         ]);
     }
 }

@@ -73,7 +73,10 @@ class ZoomController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $zoom = Zoom::with('creator:id,name', 'editor:id,name', 'type:id,name,price,host,participants', 'project:id,email,password')->findOrFail($id);
+
+        return view('pages.zooms.zoom.show', compact('zoom'));
     }
 
     /**
@@ -82,9 +85,9 @@ class ZoomController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Zoom $zoom)
     {
-        //
+        return view('pages.zooms.zoom.edit', compact('zoom'));
     }
 
     /**
@@ -95,8 +98,24 @@ class ZoomController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {   
+        $request->validate([
+            'project_id' => 'required|exists:projects,id',
+            'zoom_type_id' => 'required|exists:type_zooms,id',
+            'password' => 'required',
+            'country' => 'required',
+        ]);
+
+        try {
+            $zoom = Zoom::findOrFail($id);
+
+            $zoom->update($request->all());
+
+            return redirect()->route('zoom.index')->with('success', 'Success update');
+
+        } catch (Exception $e){
+            return redirect()->route('zoom.index')->with('error', $e->getMessage());
+        }
     }
 
     /**
@@ -107,7 +126,19 @@ class ZoomController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $zoom = Zoom::findOrFail($id);
+            $zoom->delete();
+            
+            return response()->json([
+                'message' => 'Success Delete',
+            ]);
+
+        } catch(Exception $e){
+            return response()->json([
+                'message' => 'upps something when wrong'
+            ]);
+        }
     }
 
     public function datatables(ZoomService $service)
