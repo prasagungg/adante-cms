@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
+use App\Models\Zoom;
+use App\Services\ZoomService;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ZoomController extends Controller
 {
@@ -13,7 +18,7 @@ class ZoomController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.zooms.zoom.index');
     }
 
     /**
@@ -23,7 +28,7 @@ class ZoomController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.zooms.zoom.create');
     }
 
     /**
@@ -34,7 +39,30 @@ class ZoomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'zoom.*.project_id' => 'required|exists:projects,id',
+            'zoom.*.zoom_type_id' => 'required|exists:type_zooms,id',
+            'zoom.*.password' => 'required',
+            'zoom.*.country' => 'required',
+        ]);
+
+
+        DB::beginTransaction();
+        try {
+
+            foreach ($request->zoom as $key => $value) {
+                $zoom = Zoom::create($value);
+                $project = Project::find($zoom->project_id);
+                $project->update([
+                    'type' => 'zoom'
+                ]);
+            }
+            DB::commit();
+            return redirect()->route('zoom.index')->with('success', 'Success added zoom account');
+        } catch (Exception $e){
+            DB::rollback();
+            return redirect()->route('zoom.index')->with('error', $e->getMessage());
+        }
     }
 
     /**
@@ -80,6 +108,11 @@ class ZoomController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function datatables(ZoomService $service)
+    {
+        return $service->getDatatables();
     }
     
 }

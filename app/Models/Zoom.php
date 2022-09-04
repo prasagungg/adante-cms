@@ -22,4 +22,16 @@ class Zoom extends Model
         return $this->belongsTo(User::class, 'updated_by', 'id');
     }
 
+    public function project()
+    {
+        return $this->belongsTo(Project::class, 'project_id', 'id');
+    }
+
+    public function type()
+    {
+        return $this->belongsTo(TypeZoom::class, 'zoom_type_id', 'id');
+    }
+
+    
+
 }

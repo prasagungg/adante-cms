@@ -39,10 +39,14 @@ Route::middleware('auth')->group(function (){
     
     Route::prefix('zooms')->group(function(){
         Route::resource('zoom', ZoomController::class);
+        Route::post('/zoom/datatables', [ZoomController::class, 'datatables'])->name('zoom.datatables');
         
         Route::resource('type', TypeZoomController::class);
         Route::post('/type/datatables', [TypeZoomController::class, 'datatables'])->name('type.datatables');
+        Route::post('/type/select', [TypeZoomController::class, 'select'])->name('type.select');
+        Route::get('/type/selected/{type}', [TypeZoomController::class, 'selected'])->name('type.selected');
 
     });
 
 });
+

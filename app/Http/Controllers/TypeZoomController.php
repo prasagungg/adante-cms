@@ -140,4 +140,34 @@ class TypeZoomController extends Controller
     {
         return $service->getDatatables();
     }
+
+    public function select(Request $request)
+    {
+        $keyword = $request->search;
+
+        $projects = TypeZoom::select('id', 'name')
+            ->where('name', 'like', "%{$keyword}%")
+            ->orderBy('name')
+            ->get()->take(10);
+
+        $result = [];
+
+        foreach ($projects as $project) {
+            $result[] = [
+                "id" => $project->id,
+                "text" => $project->name,
+            ];
+        }
+
+        return $result;
+        
+    }
+
+    public function selected(TypeZoom $project)
+    {
+        return response()->json([
+            "id" => $project->id,
+            "text" => $project->name,
+        ]);
+    }
 }

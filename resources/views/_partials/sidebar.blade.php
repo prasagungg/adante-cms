@@ -57,7 +57,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="../../pages/tables/sortable.html" class="nav-link">
+                  <a href="{{ route('zoom.index') }}" class="nav-link {{ request()->is('zooms/zoom*') ? 'active' : '' }}">
                     <span class="sidenav-mini-icon"> S </span>
                     <span class="sidenav-normal"> Account Zoom </span>
                   </a>
